@@ -1,10 +1,14 @@
 import { Component, signal, ChangeDetectionStrategy } from '@angular/core';
 import { Track } from './models/track';
 import { TrackList } from './track-list/track-list';
+import { TrackForm } from './track-form/track-form';
 
 @Component({
   selector: 'app-root',
-  imports: [TrackList],
+  imports: [
+    TrackList,
+    TrackForm
+  ],
   templateUrl: './app.html',
   changeDetection: ChangeDetectionStrategy.Eager,
   styleUrl: './app.css',
