@@ -1,12 +1,25 @@
 import { Component, signal } from '@angular/core';
-import { RouterOutlet } from '@angular/router';
+import { Track } from './models/track';
+import { TrackCard } from './track-card/track-card';
 
 @Component({
   selector: 'app-root',
-  imports: [RouterOutlet],
+  imports: [TrackCard],
   templateUrl: './app.html',
   styleUrl: './app.css'
 })
 export class App {
-  protected readonly title = signal('cinetrack');
+  
+  current = signal<Track>({
+    id: 1,
+    title: 'Blinding Lights',
+    artist: 'The Weeknd',
+    album: 'After Hours',
+    genre: 'Synth-pop',
+    durationSeconds: 200,
+    year: 2019,
+    rating: 9,
+    favorite: true,
+    coverUrl: 'https://picsum.photos/seed/1/300'
+  });
 }

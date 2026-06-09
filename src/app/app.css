@@ -1,0 +1,9 @@
+h1 {
+  text-align: center;
+}
+
+app-track-card {
+  display: flex;
+  justify-content: center;
+  margin-top: 2rem;
+}
