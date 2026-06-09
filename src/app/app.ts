@@ -1,4 +1,4 @@
-import { Component, signal } from '@angular/core';
+import { Component, signal, ChangeDetectionStrategy } from '@angular/core';
 import { Track } from './models/track';
 import { TrackCard } from './track-card/track-card';
 
@@ -6,10 +6,10 @@ import { TrackCard } from './track-card/track-card';
   selector: 'app-root',
   imports: [TrackCard],
   templateUrl: './app.html',
-  styleUrl: './app.css'
+  changeDetection: ChangeDetectionStrategy.Eager,
+  styleUrl: './app.css',
 })
 export class App {
-  
   current = signal<Track>({
     id: 1,
     title: 'Blinding Lights',
@@ -20,6 +20,6 @@ export class App {
     year: 2019,
     rating: 9,
     favorite: true,
-    coverUrl: 'https://picsum.photos/seed/1/300'
+    coverUrl: 'https://picsum.photos/seed/1/300',
   });
 }
