@@ -1,9 +1,14 @@
 import { Component, output, input } from '@angular/core';
 import { Track } from '../models/track';
+import { DurationFormatPipe } from '../pipes/duration-format-pipe';
+import { HighlightFavorite } from '../directives/highlight-favorite';
 
 @Component({
   selector: 'app-track-card',
-  imports: [],
+  imports: [
+    DurationFormatPipe,
+    HighlightFavorite
+  ],
   templateUrl: './track-card.html',
   styleUrl: './track-card.css',
 })
