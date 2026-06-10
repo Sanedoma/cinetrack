@@ -1,0 +1,23 @@
+<input
+  type="search"
+  placeholder="Rechercher un morceau..."
+  (input)="term.set($any($event.target).value)"
+>
+
+@if(results().length > 0){
+
+  @for(t of results(); track t.id){
+
+    <p>
+      {{ t.title }}
+      -
+      {{ t.artist }}
+    </p>
+
+  }
+
+} @else {
+
+  <p>Aucun résultat</p>
+
+}

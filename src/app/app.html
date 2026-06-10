@@ -10,6 +10,16 @@
 
   <app-track-form />
   <br>
-  <app-track-list [tracks]="tracks()"></app-track-list>
+  <br>
+  <app-track-search />
+  <br>
+  <app-track-list
+    [tracks]="tracks()"
+    (selectedTrack)="selectedTrack.set($event)">
+  </app-track-list>
+  <br>
+  <app-track-detail
+    [trackId]="selectedTrack()">
+  </app-track-detail>
 </body>
 </html>

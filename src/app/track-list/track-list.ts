@@ -1,4 +1,4 @@
-import { Component, input, signal, computed } from '@angular/core';
+import { Component, input, signal, computed, output } from '@angular/core';
 import { Track } from '../models/track';
 import { TrackCard } from '../track-card/track-card';
 
@@ -12,6 +12,7 @@ export class TrackList {
   tracks = input.required<Track[]>();
   protected selectedId = signal<number | null>(null);
 
+  selectedTrack = output<number>();
   searchTerm = signal('');
   filteredTracks = computed(() => {
     const term = this.searchTerm().toLowerCase().trim();

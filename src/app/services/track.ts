@@ -1,4 +1,4 @@
-import { HttpClient } from '@angular/common/http';
+import { HttpClient, HttpParams } from '@angular/common/http';
 import { inject, Injectable } from '@angular/core';
 import { environement } from '../../environements/environement';
 
@@ -16,5 +16,10 @@ export class Track {
 
     getTrack(id: number){
         return this.http.get<Tracker>(`${this.baseUrl}/${id}`);
+    }
+
+    search(query: string){
+        const param = new HttpParams().set('q', query);
+        return this.http.get<Tracker[]>(this.baseUrl, { params: param })
     }
 }
