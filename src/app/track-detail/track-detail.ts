@@ -1,23 +1,41 @@
-import { Component, inject, input } from '@angular/core';
-import { Track as Tracker} from '../services/track';
-import { toObservable, toSignal } from '@angular/core/rxjs-interop';
-import { switchMap } from 'rxjs';
+import { Component, inject } from '@angular/core';
+import { ActivatedRoute } from '@angular/router';
+
+import { Track as TrackService } from '../services/track';
+
+import { toSignal } from '@angular/core/rxjs-interop';
+
+import {
+  map,
+  switchMap
+} from 'rxjs';
 
 @Component({
   selector: 'app-track-detail',
-  imports: [],
   standalone: true,
   templateUrl: './track-detail.html',
   styleUrl: './track-detail.css',
 })
 export class TrackDetail {
 
-  trackId = input.required<number>();
+  private route = inject(ActivatedRoute);
 
-  private service = inject(Tracker);
+  private service = inject(TrackService);
+
   protected track = toSignal(
-    toObservable(this.trackId).pipe(
-      switchMap(id => this.service.getTrack(id))
+
+    this.route.paramMap.pipe(
+
+      map(params =>
+        Number(params.get('id'))
+      ),
+
+      switchMap(id =>
+        this.service.getTrack(id)
+      )
+
     )
+
   );
+
 }

@@ -1,18 +1,13 @@
 import { Component, signal, ChangeDetectionStrategy, inject } from '@angular/core';
 import { toSignal } from '@angular/core/rxjs-interop';
-import { TrackList } from './track-list/track-list';
-import { TrackForm } from './track-form/track-form';
 import { Track as Tracker } from './services/track';
-import { TrackDetail } from './track-detail/track-detail';
-import { TrackSearch } from './track-search/track-search';
+import { RouterLink, RouterOutlet } from '@angular/router';
 
 @Component({
   selector: 'app-root',
   imports: [
-    TrackList,
-    TrackForm,
-    TrackDetail,
-    TrackSearch
+    RouterOutlet,
+    RouterLink
   ],
   templateUrl: './app.html',
   changeDetection: ChangeDetectionStrategy.Eager,

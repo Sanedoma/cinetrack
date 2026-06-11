@@ -8,18 +8,16 @@
 <body>
   <h1>CineTrack 🎵</h1>
 
-  <app-track-form />
-  <br>
-  <br>
-  <app-track-search />
-  <br>
-  <app-track-list
-    [tracks]="tracks()"
-    (selectedTrack)="selectedTrack.set($event)">
-  </app-track-list>
-  <br>
-  <app-track-detail
-    [trackId]="selectedTrack()">
-  </app-track-detail>
+<nav>
+  <a routerLink="/">Accueil</a>
+  |
+  <a routerLink="/add">Ajouter</a>
+  |
+  <a routerLink="/login">Connexion</a>
+</nav>
+
+<hr>
+
+<router-outlet />
 </body>
 </html>
