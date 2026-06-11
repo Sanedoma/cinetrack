@@ -1,5 +1,20 @@
 <h2>Mes favoris ❤️</h2>
 
-<app-track-list
-  [tracks]="favorites()">
-</app-track-list>
+@for (track of favorites(); track track.id) {
+
+  <div class="favorite-item">
+
+    <strong>{{ track.title }}</strong>
+    - {{ track.artist }}
+
+    <button (click)="removeFavorite(track)">
+      Retirer ❤️
+    </button>
+
+  </div>
+
+} @empty {
+
+  <p>Aucun favori.</p>
+
+}

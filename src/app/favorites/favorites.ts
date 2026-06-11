@@ -1,21 +1,37 @@
-import { Component, inject } from '@angular/core';
+import { Component, inject, signal } from '@angular/core';
+import { Track } from '../models/track';
 import { Track as TrackService } from '../services/track';
-import { toSignal } from '@angular/core/rxjs-interop';
-import { TrackList } from '../track-list/track-list';
 
 @Component({
   selector: 'app-favorites',
-  imports: [TrackList],
-  templateUrl: './favorites.html',
-  styleUrl: './favorites.css',
-  standalone: true
+  standalone: true,
+  templateUrl: './favorites.html'
 })
 export class Favorites {
+
   private service = inject(TrackService);
-  favorites = toSignal(
-    this.service.getFavorites(),
-    {
-      initialValue: []
-    }
-  );
+
+  favorites = signal<Track[]>([]);
+
+  constructor() {
+    this.loadFavorites();
+  }
+
+  loadFavorites() {
+    this.service.getFavorites().subscribe({
+      next: tracks => this.favorites.set(tracks),
+      error: err => console.error(err)
+    });
+  }
+
+  removeFavorite(track: Track) {
+    this.service.removeFavorite(track.id).subscribe({
+      next: () => {
+        this.favorites.update(list =>
+          list.filter(t => t.id !== track.id)
+        );
+      },
+      error: err => console.error(err)
+    });
+  }
 }

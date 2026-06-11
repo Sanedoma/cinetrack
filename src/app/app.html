@@ -8,21 +8,28 @@
 <body>
   <h1>CineTrack 🎵</h1>
 
-<nav>
-  <a routerLink="/">Accueil</a>
-  |
-  <a routerLink="/add">Ajouter</a>
-  |
-  <a routerLink="/login">Connexion</a>
-  @if(auth.isLoggedIn()) {
-    <a routerLink="/favorites">
-      Favoris ❤️
+  <nav>
+    <a routerLink="/">
+      Accueil
     </a>
-  }
-</nav>
+    |
+    <a routerLink="/add">
+      Ajouter
+    </a>
+    @if(auth.isLoggedIn()) {
+      |
+      <a routerLink="/favorites">
+        Favoris ❤️
+      </a>
+    }
+    |
+    <a routerLink="/login">
+      Connexion
+    </a>
+  </nav>
 
-<hr>
+  <hr>
 
-<router-outlet />
+  <router-outlet />
 </body>
 </html>

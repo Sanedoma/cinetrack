@@ -56,15 +56,23 @@ export class TrackList {
   toggleFavorite(track: Track) {
     if(track.favorite){
       this.service.removeFavorite(track.id)
-        .subscribe();
+        .subscribe({
+          next: () => {
+            track.favorite = false;
+          },
+          error: err => console.error(err)
+        });
 
-    }
-    else {
+    } else {
       this.service.addFavorite(track.id)
-        .subscribe();
+        .subscribe({
+          next: () => {
+            track.favorite = true;
+          },
+          error: err => console.error(err)
+        });
 
     }
-
   }
 
 }
