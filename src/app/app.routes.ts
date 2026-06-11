@@ -4,6 +4,7 @@ import { TrackDetail } from './track-detail/track-detail';
 import { TrackForm } from './track-form/track-form';
 import { Login } from './login/login';
 import { authGuard } from './guards/auth-guard';
+import { Favorites } from './favorites/favorites';
 
 export const routes: Routes = [
     {
@@ -22,5 +23,10 @@ export const routes: Routes = [
     {
         path: "login",
         component: Login,
+    },
+    {
+        path: 'favorites',
+        component: Favorites,
+        canActivate: [authGuard]
     }
 ];

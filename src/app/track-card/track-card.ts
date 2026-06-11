@@ -17,4 +17,15 @@ export class TrackCard {
 
   active = input(false);
   select = output<Track>();
+  favoriteToggled = output<Track>();
+
+  toggleFavorite(event: Event) {
+
+    event.stopPropagation();
+
+    this.favoriteToggled.emit(
+      this.track()
+    );
+
+  }
 }

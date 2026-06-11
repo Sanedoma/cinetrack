@@ -7,7 +7,10 @@
 
 <section class="grid">
     @for (track of filteredTracks(); track track.id){
-        <app-track-card [track]="track" [active]="track.id === selectedId()" (select)="goToDetail($event.id)"></app-track-card>
+        <app-track-card
+        [track]="track"
+        (favoriteToggled)="toggleFavorite($event)">
+        </app-track-card>
     } @empty{
         <p>Aucune morceau à afficher</p>
     }

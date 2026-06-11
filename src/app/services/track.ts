@@ -43,4 +43,19 @@ export class Track {
         );
     }
 
+    getFavorites(){
+        return this.http.get<Tracker[]>(`${environement.apiUrl}/favorites`);
+    }
+
+    addFavorite(trackId: number){
+        return this.http.post(
+            `${environement.apiUrl}/favorites/${trackId}`,
+            {}
+        );
+    }
+
+    removeFavorite(trackId: number){
+        return this.http.delete(`${environement.apiUrl}/favorites/${trackId}`);
+    }
+
 }

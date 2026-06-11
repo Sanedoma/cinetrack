@@ -17,6 +17,7 @@ export class TrackList {
 
   private trackService = inject(TrackService);
   private router = inject(Router);
+  private service = inject(TrackService);
 
   goToDetail(id: number){
     this.selectedId.set(id);
@@ -51,5 +52,19 @@ export class TrackList {
     );
 
   });
+
+  toggleFavorite(track: Track) {
+    if(track.favorite){
+      this.service.removeFavorite(track.id)
+        .subscribe();
+
+    }
+    else {
+      this.service.addFavorite(track.id)
+        .subscribe();
+
+    }
+
+  }
 
 }

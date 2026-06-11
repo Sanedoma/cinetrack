@@ -28,4 +28,7 @@
     @if (active()){
         <span class="badge">▶️ En lecture</span>
     }
+    <button (click)="toggleFavorite($event)">
+        {{ track().favorite ? '❤️' : '🤍' }}
+    </button>
 </article>

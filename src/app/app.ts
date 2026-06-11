@@ -2,6 +2,7 @@ import { Component, signal, ChangeDetectionStrategy, inject } from '@angular/cor
 import { toSignal } from '@angular/core/rxjs-interop';
 import { Track as Tracker } from './services/track';
 import { RouterLink, RouterOutlet } from '@angular/router';
+import { Auth } from './services/auth';
 
 @Component({
   selector: 'app-root',
@@ -16,6 +17,7 @@ import { RouterLink, RouterOutlet } from '@angular/router';
 export class App {
 
   private trackService = inject(Tracker);
+  protected auth = inject(Auth);
   
   selectedTrack = signal<number>(1);
 

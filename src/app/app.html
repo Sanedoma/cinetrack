@@ -14,6 +14,11 @@
   <a routerLink="/add">Ajouter</a>
   |
   <a routerLink="/login">Connexion</a>
+  @if(auth.isLoggedIn()) {
+    <a routerLink="/favorites">
+      Favoris ❤️
+    </a>
+  }
 </nav>
 
 <hr>
