@@ -1,5 +1,5 @@
 import { Component, inject } from '@angular/core';
-import { ActivatedRoute } from '@angular/router';
+import { ActivatedRoute, Router } from '@angular/router';
 
 import { Track as TrackService } from '../services/track';
 
@@ -19,7 +19,7 @@ import {
 export class TrackDetail {
 
   private route = inject(ActivatedRoute);
-
+  private router = inject(Router);
   private service = inject(TrackService);
 
   protected track = toSignal(
@@ -37,5 +37,21 @@ export class TrackDetail {
     )
 
   );
+
+  deleteTrack(){
+    const currentTrack = this.track();
+    if(!currentTrack){
+      return;
+    }
+
+    this.service.deleteTrack(currentTrack.id).subscribe({
+      next: () => {
+        this.router.navigate(['/']);
+      },
+      error: err => {
+        console.error(err);
+      }
+    });
+  }
 
 }

@@ -18,7 +18,9 @@ interface LoginResponse {
 })
 export class Auth {
     private http = inject(HttpClient);
-    private tokenSignal = signal<string | null>(null);
+    private tokenSignal = signal<string | null>(
+        localStorage.getItem('token')
+    );
     readonly isLoggedIn = computed(() => this.tokenSignal() !== null);
 
     get token(){
@@ -30,11 +32,14 @@ export class Auth {
             email,
             password
         }).pipe(tap(res => {
+            localStorage.setItem('token', res.accessToken);
             this.tokenSignal.set(res.accessToken);
-        }))
+        }));
+
     }
 
     Logout(){
-        this.tokenSignal.set(null)
+        localStorage.removeItem('token');
+        this.tokenSignal.set(null);
     }
 }

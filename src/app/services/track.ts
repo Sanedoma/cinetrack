@@ -22,4 +22,25 @@ export class Track {
         const param = new HttpParams().set('q', query);
         return this.http.get<Tracker[]>(this.baseUrl, { params: param })
     }
+
+    createTrack(track: Tracker){
+        return this.http.post<Tracker>(
+            this.baseUrl,
+            track
+        );
+    }
+
+    updateTrack(track: Tracker) {
+        return this.http.put<Tracker>(
+            `${this.baseUrl}/${track.id}`,
+            track
+        );
+    }
+
+    deleteTrack(id: number) {
+        return this.http.delete(
+            `${this.baseUrl}/${id}`
+        );
+    }
+
 }
